@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.pauloalecio.crudjavaspring.domain.entity.Sexo;
-import com.pauloalecio.crudjavaspring.exception.SexoException;
+import com.pauloalecio.crudjavaspring.exception.GeneroException;
 import com.pauloalecio.crudjavaspring.repositories.GeneroRepository;
 import com.pauloalecio.crudjavaspring.services.GeneroService;
 
@@ -24,7 +24,7 @@ public class GeneroServiceImpl implements GeneroService{
 
   @Override
   public Sexo getGeneroById(Long id) {
-    var sexo = repository.findById(id).orElseThrow(SexoException::new);
+    var sexo = repository.findById(id).orElseThrow(GeneroException::new);
     return sexo;
   }
 
