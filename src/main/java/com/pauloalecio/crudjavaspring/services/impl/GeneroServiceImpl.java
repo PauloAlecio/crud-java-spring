@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.pauloalecio.crudjavaspring.domain.entity.Sexo;
 import com.pauloalecio.crudjavaspring.exception.SexoException;
-import com.pauloalecio.crudjavaspring.repositories.SexoRepository;
+import com.pauloalecio.crudjavaspring.repositories.GeneroRepository;
 import com.pauloalecio.crudjavaspring.services.GeneroService;
 
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class GeneroServiceImpl implements GeneroService{
-  private final SexoRepository repository;
+  private final GeneroRepository repository;
 
   @Override
   public List<Sexo> getAll() {

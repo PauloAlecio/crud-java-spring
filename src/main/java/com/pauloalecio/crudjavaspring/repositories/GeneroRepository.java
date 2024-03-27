@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.pauloalecio.crudjavaspring.domain.entity.Sexo;
 
 @Repository
-public interface SexoRepository extends JpaRepository<Sexo,Long> {  
+public interface GeneroRepository extends JpaRepository<Sexo,Long> {  
 }
