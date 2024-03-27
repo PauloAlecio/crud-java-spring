@@ -1,0 +1,6 @@
+GET http://localhost:8081/crud-spring/api/v1/genero HTTP/1.1
+content-type: application/json
+
+###
+GET http://localhost:8081/crud-spring/api/v1/genero/22 HTTP/1.1
+content-type: application/json
