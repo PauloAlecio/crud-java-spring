@@ -2,8 +2,6 @@ package com.pauloalecio.crudjavaspring.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,17 +12,19 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.pauloalecio.crudjavaspring.enums.UF;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Setter
 @Getter
 @Builder
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -36,18 +36,15 @@ public class Estado implements Serializable
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "uf", length = 2, nullable = false)
-	private UF uf;
+	@Column(name = "sigla", length = 2, nullable = false)
+	private String sigla;
 	
-	
-	@Enumerated(EnumType.STRING)
 	@Column(name = "nome", length = 20, nullable = false)
-	private UF nome;
+	private String nome;
 	
-//	@JsonIgnore
+	@JsonIgnore
 	@OneToMany(mappedBy="estado")
 	private final List<Cidade> cidades = new ArrayList<>();
 
@@ -68,10 +65,7 @@ public class Estado implements Serializable
 		return Objects.equals(id, other.id);
 	}
 
-	@Override
-	public String toString() {
-		return "Estado [id=" + id + ", uf=" + uf + ", cidades=" + cidades + "]";
-	}
+
 
 	
 	
