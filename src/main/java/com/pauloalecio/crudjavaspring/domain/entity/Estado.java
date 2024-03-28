@@ -12,7 +12,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,7 +23,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Setter
 @Getter
 @Builder
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -63,6 +61,11 @@ public class Estado implements Serializable
 			return false;
 		Estado other = (Estado) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "Estado [id=" + id + ", sigla=" + sigla + ", nome=" + nome + "]";
 	}
 
 
