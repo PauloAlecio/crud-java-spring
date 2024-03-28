@@ -10,4 +10,8 @@ public interface EstadoService {
   List<Estado>getAll();
 
   Estado getEstadoById(Integer id);
+
+  Estado getBySigla(String sigla);
+
+  Estado getByNome(String nome);
 }

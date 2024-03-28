@@ -28,7 +28,21 @@ public class EstadoServiceImpl implements EstadoService {
   @Override
   public Estado getEstadoById(Integer id) {
     var estado = repository.findById(id).orElseThrow(EstadoException::new);
-    log.info("Estado {}, Service: {}",estado, EstadoServiceImpl.class);
+    log.info("{}, Service: {}",estado, EstadoServiceImpl.class);
+    return estado;
+  }
+
+  @Override
+  public Estado getBySigla(String sigla) {
+    var estado = repository.findBySigla(sigla).orElseThrow(EstadoException::new);
+    log.info("{}, Service: {}",estado, EstadoServiceImpl.class);
+    return estado;
+  }
+
+  @Override
+  public Estado getByNome(String nome) {
+    var estado = repository.findByNome(nome).orElseThrow(EstadoException::new);
+    log.info("{}, Service: {}",estado, EstadoServiceImpl.class);
     return estado;
   }
   
