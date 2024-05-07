@@ -1,5 +1,6 @@
 package com.pauloalecio.crudjavaspring.enums;
 
+import java.util.stream.Stream;
 
 public enum UF {
 
@@ -53,70 +54,17 @@ public enum UF {
 		return sigla;
 	}
 	
-	// public static UF toEnum(String nome) {
-		
-	// 	if (nome == null) {
-	// 		return null;
-	// 	}
-		
-	// 	for (UF uf : UF.values()) {
-	// 		if (nome.equals(uf.getNome())) {
-	// 			return uf;
-	// 		}
-	// 	}
-		
-	// 	throw new IllegalArgumentException("Id inválido: " + nome);
-	// }
+
+	public static UF ofSigla(String sigla){
+		return Stream.of(UF.values()).filter(uf -> uf.getSigla().equalsIgnoreCase(sigla))
+		.findFirst().orElseThrow(() -> new IllegalArgumentException(String.format("Estado não encontrado com a sigla: %s",sigla)));
+	}
+
+	public static UF ofNome(String nome){
+		return Stream.of(UF.values()).filter(uf -> uf.getNome().equalsIgnoreCase(nome))
+		.findFirst().orElseThrow(() -> new IllegalArgumentException(String.format("Estado não encontrado com nome: %s",nome)));
+	}
 
 
-  // private final String nome;
-  // private final String sigla;
 
-  // UF(final String nome, final String sigla) {
-  //   this.nome = nome;
-  //   this.sigla = sigla;
-    
-  // }
-
-  
-  // public static UF fromUF(final String nomeUf) {
-  //   for (final UF uf : UF.values()) {
-  //     if (uf.nome.equalsIgnoreCase(nomeUf)) {
-  //       return uf;
-  //     }
-  //   }
-
-  //   throw new IllegalArgumentException(nomeUf);
-  // }
-
- 
-  // public static UF fromSigla(final String sigla) {
-  //   for (final UF uf : UF.values()) {
-  //     if (uf.sigla.equalsIgnoreCase(sigla)) {
-  //       return uf;
-  //     }
-  //   }
-
-  //   throw new IllegalArgumentException(sigla);
-  // }
-
- 
-  // public String sigla() {
-  //   return this.sigla;
-  // }
-
- 
-  // public String nome() {
-  //   return this.nome;
-  // }
-
-  
-  // @Override
-  // public String toString() {
-  //   final StringBuilder sb = new StringBuilder("UnidadeFederacao{");
-  //   sb.append("nome='").append(nome).append('\'');
-  //   sb.append(", sigla='").append(sigla).append('\'');
-  //   sb.append('}');
-  //   return sb.toString();
-  // }
 }

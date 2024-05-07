@@ -2,6 +2,8 @@ package com.pauloalecio.crudjavaspring.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,6 +21,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.pauloalecio.crudjavaspring.enums.UF;
 
 @Setter
 @Getter
@@ -36,11 +39,13 @@ public class Estado implements Serializable
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "sigla", length = 2, nullable = false)
-	private String sigla;
+	@Enumerated(EnumType.STRING)
+	// @Column(name = "sigla", length = 2, nullable = false)
+	private UF sigla;
 	
-	@Column(name = "nome", length = 20, nullable = false)
-	private String nome;
+	@Enumerated(EnumType.STRING)
+	// @Column(name = "nome", length = 20, nullable = false)
+	private UF nome;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="estado")

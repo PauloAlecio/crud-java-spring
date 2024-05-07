@@ -1,40 +1,26 @@
 package com.pauloalecio.crudjavaspring.enums;
 
+import java.util.stream.Stream;
+
 public enum Genero {
 
-	MASCULINO(1, "MASCULINO"),
-	FEMININO(2, "FEMININO");
+	MASCULINO("MASCULINO"),
+	FEMININO("FEMININO");
 	
-	private int codigo;
 	private String descricao;
-	
-	private Genero(int codigo, String descricao) {
-		this.codigo = codigo;
+
+	private Genero( String descricao) {
 		this.descricao = descricao;
-	}
-	
-	public int getCodigo() {
-		return codigo;
 	}
 	
 	public String getDescricao () {
 		return descricao;
 	}
-	
-	public static Genero toEnum(Integer codigo) {
-		
-		if (codigo == null) {
-			return null;
-		}
-		
-		for (Genero s : Genero.values()) {
-			if (codigo.equals(s.getCodigo())) {
-				return s;
-			}
-		}
-		
-		throw new IllegalArgumentException("Genero inválido: " + codigo);
+
+	public static Genero ofDescricao(String desc){
+		return Stream.of(Genero.values()).filter(genero -> genero.getDescricao().equalsIgnoreCase(desc))
+		.findFirst().orElseThrow(() -> new IllegalArgumentException(String.format("Genero não encontrado com nome: %s",desc)));
 	}
-	
+
 	
 }

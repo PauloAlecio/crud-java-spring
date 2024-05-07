@@ -3,6 +3,7 @@ package com.pauloalecio.crudjavaspring.services;
 import java.util.List;
 
 import com.pauloalecio.crudjavaspring.domain.entity.Estado;
+import com.pauloalecio.crudjavaspring.enums.UF;
 
 
 public interface EstadoService {
@@ -11,7 +12,7 @@ public interface EstadoService {
 
   Estado getEstadoById(Integer id);
 
-  Estado getBySigla(String sigla);
+  Estado getBySigla(UF sigla);
 
-  Estado getByNome(String nome);
+  Estado getByNome(UF nome);
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.pauloalecio.crudjavaspring.domain.entity.Estado;
+import com.pauloalecio.crudjavaspring.enums.UF;
 import com.pauloalecio.crudjavaspring.exception.EstadoException;
 import com.pauloalecio.crudjavaspring.repositories.EstadoRepository;
 import com.pauloalecio.crudjavaspring.services.EstadoService;
@@ -33,14 +34,15 @@ public class EstadoServiceImpl implements EstadoService {
   }
 
   @Override
-  public Estado getBySigla(String sigla) {
+  public Estado getBySigla(UF sigla) {
+    log.info("UF SIGLA: {}, Service: {}",sigla, EstadoServiceImpl.class);
     var estado = repository.findBySigla(sigla).orElseThrow(EstadoException::new);
     log.info("{}, Service: {}",estado, EstadoServiceImpl.class);
     return estado;
   }
 
   @Override
-  public Estado getByNome(String nome) {
+  public Estado getByNome(UF nome) {
     var estado = repository.findByNome(nome).orElseThrow(EstadoException::new);
     log.info("{}, Service: {}",estado, EstadoServiceImpl.class);
     return estado;

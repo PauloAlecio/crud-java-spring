@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pauloalecio.crudjavaspring.domain.entity.Estado;
+import com.pauloalecio.crudjavaspring.enums.UF;
 import com.pauloalecio.crudjavaspring.services.EstadoService;
 
 import lombok.RequiredArgsConstructor;
@@ -41,14 +42,14 @@ public class EstadoController {
   @GetMapping("/nome")
   public ResponseEntity<Estado> getByNome(@RequestParam("param") String nome){
     log.info("Buscando Estado por nome: {}, Service: {}",nome, EstadoController.class);
-    var estado  =  service.getByNome(nome);
+    var estado  =  service.getByNome(UF.ofNome(nome));
     return new ResponseEntity<>(estado,HttpStatus.OK);
   }
 
   @GetMapping("/sigla")
   public ResponseEntity<Estado> getBySigla(@RequestParam(name = "param") String sigla){
     log.info("Buscando Estado por sigla: {}, Service: {}",sigla, EstadoController.class);
-    var estado  =  service.getBySigla(sigla);
+    var estado  =  service.getBySigla(UF.ofSigla(sigla));
     return new ResponseEntity<>(estado,HttpStatus.OK);
   }
 

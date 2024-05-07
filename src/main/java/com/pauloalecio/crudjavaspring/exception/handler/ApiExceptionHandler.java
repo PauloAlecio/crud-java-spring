@@ -40,14 +40,13 @@ public class ApiExceptionHandler {
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ErrorMessage> handleIllegalArgumentException(MethodArgumentNotValidException ex,
-        HttpServletRequest request,
-        BindingResult result) {
+    public ResponseEntity<ErrorMessage> handleIllegalArgumentException(IllegalArgumentException ex,
+        HttpServletRequest request) {
         log.error("Api Error - ", ex);
         return ResponseEntity
             .status(HttpStatus.UNPROCESSABLE_ENTITY)
             .contentType(MediaType.APPLICATION_JSON)
-            .body(new ErrorMessage(request, HttpStatus.UNPROCESSABLE_ENTITY, message(result),LocalDateTime.now(), result));
+            .body(new ErrorMessage(request, HttpStatus.UNPROCESSABLE_ENTITY, ex.getMessage(),LocalDateTime.now()));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -74,7 +73,7 @@ public class ApiExceptionHandler {
 
 
     private String message(BindingResult result){
-      var message  = String.valueOf(result.getFieldErrorCount() > 2 ? "Campo(s) invalido(s)" : "Campo invalido" );
+      var message  = String.valueOf(result.getFieldErrorCount() > 1 ? "Campo(s) invalido(s)" : "Campo invalido" );
       return message;
   }
 
